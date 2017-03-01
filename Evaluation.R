@@ -26,9 +26,13 @@ library(readxl)
 #ASPU Data - Mathematics Perception
 
 ASPUpeold <- read.xlsx("EvaluationDataASPU_Armenia.xlsx", sheetName = "PreQOld")
+ASPUpeold$univ <- as.factor("ASPU")
 ASPUpoold <- read.xlsx("EvaluationDataASPU_Armenia.xlsx", sheetName = "PostQOld")
+ASPUpoold$univ <- as.factor("ASPU")
 ASPUpemo <- read.xlsx("EvaluationDataASPU_Armenia.xlsx", sheetName = "PreQModern")
+ASPUpemo$univ <- as.factor("ASPU")
 ASPUpomo <- read.xlsx("EvaluationDataASPU_Armenia.xlsx", sheetName = "PostQModern")
+ASPUpomo$univ <- as.factor("ASPU")
 
 #ATSU Data - Mathematics Perception
 
@@ -44,6 +48,15 @@ BSUpomo <- read.xlsx("EvaluationBSUPosNew.xlsx", sheetName = "Sheet1")
 #GTU Data - Mathematics Perception
 GTUpomo <- read.xlsx("EvaluationGTU.xlsx", sheetName = "Sheet1")
 
+#UG Data - Matehamtics Percepetion
+UGpeold <- read.xlsx("EvaluationUG.xlsx", sheetName = "PreQOld")
+UGpoold <- read.xlsx("EvaluationUG.xlsx", sheetName = "PosQOld")
+UGpemo <- read.xlsx("EvaluationUG.xlsx", sheetName = "PreQModern")
+UGpomo <- read.xlsx("EvaluationUG.xlsx", sheetName = "PosQModern")
+
+
+
+
 #KAI Data - Mathematics Perception 
 
 KAIpeoldfirst <- read_excel("EvaluationKAIProb.xlsx", sheet = 1)
@@ -58,14 +71,30 @@ KAIpomosec <- read.xlsx("EvaluationKAIOp.xlsx", sheetName = "PostQModern")
 
 #NPUA Data - Mathematics Perception
 NPUApeoldfirst <- read.xlsx("EvaluationNPUAone.xlsx", sheetName = "PreQOld")
+NPUApeoldfirst[,35:45] <- NULL
+NPUApeoldfirst$univ <- as.factor("NPUA")
 NPUApooldfirst <- read.xlsx("EvaluationNPUAone.xlsx", sheetName = "PostQOld")
+NPUApooldfirst[,35:45] <- NULL
+NPUApooldfirst$univ <- as.factor("NPUA")
 NPUApemofirst <- read.xlsx("EvaluationNPUAone.xlsx", sheetName = "PreQModern")
+NPUApemofirst[,35:45] <- NULL
+NPUApemofirst$univ <- as.factor("NPUA")
 NPUApomofirst <- read.xlsx("EvaluationNPUAone.xlsx", sheetName = "PostQModern")
+NPUApomofirst[,35:45] <- NULL
+NPUApomofirst$univ <- as.factor("NPUA")
 
 NPUApeoldsec <- read.xlsx("EvaluationNPUAtwo.xlsx", sheetName = "PreQOld")
+NPUApeoldsec[,35:45] <- NULL
+NPUApeoldsec$univ <- as.factor("NPUA")
 NPUApooldsec <- read.xlsx("EvaluationNPUAtwo.xlsx", sheetName = "PostQOld")
+NPUApooldsec[,35:45] <- NULL
+NPUApooldsec$univ <- as.factor("NPUA")
 NPUApemosec <- read.xlsx("EvaluationNPUAtwo.xlsx", sheetName = "PreQModern")
+NPUApemosec[,35:45] <- NULL
+NPUApemosec$univ <- as.factor("NPUA")
 NPUApomosec <- read.xlsx("EvaluationNPUAtwo.xlsx", sheetName = "PostQModern")
+NPUApomosec[,35:45] <- NULL
+NPUApomosec$univ <- as.factor("NPUA")
 
 #OMSU DATA - Mathematics Perception
 OMSUpeold <- read.xlsx("Evaluation Data OMSU.xlsx", sheetName = "PreQOld")
@@ -123,6 +152,56 @@ model1Gen <- lm(postest ~ pretest + factor(treatment), data = PerData)
 anova(model1Gen)
 model2Gen <- lm(postest ~ pretest * factor(treatment), data = PerData)
 anova(model2Gen)
+
+## BTU DATA PERFORMANCE -----------------------------------------
+
+DataBTU <- subset(PerData, university == "NPUA")
+describeBy(DataBTU, DataBTU$treatment)
+summary(DataBTU)
+
+prebox <- ggplot(DataBTU, aes(x = treatment, y = pretest, fill = treatment)) + geom_boxplot() + scale_x_discrete() + xlab("Treatment Group") + ylab("Scores Pre Test") + stat_summary(fun.y = mean, geom = "point", shape = 5, size = 4)
+postbox <- ggplot(DataBTU, aes(x = treatment, y = postest, fill = treatment)) + geom_boxplot() + scale_x_discrete() + xlab("Treatment Group") + ylab("Scores Post Test")+ stat_summary(fun.y = mean, geom = "point", shape = 5, size = 4)
+meanbox <- ggplot(DataBTU, aes(x = treatment, y = diff, fill = treatment)) + geom_boxplot() + scale_x_discrete() + xlab("Treatment Group") + ylab("Scores diff") + stat_summary(fun.y = mean, geom="point",shape=5, size=4)
+grid.arrange(prebox, postbox, meanbox, ncol = 3)
+
+#F-test BTU
+var.test(pretest ~ treatment, DataBTU) #as variancias sao iguais
+
+t.test(diff ~ treatment, var.equal = TRUE, paired = FALSE, DataBTU) #as medias nao sao diferentes
+
+ggplot(DataBTU, aes(x = pretest, y = postest, shape = treatment, color = treatment)) + geom_point() + geom_smooth(method = lm, se=FALSE, fullrange = TRUE)
+
+resultBTU <- aov(postest ~ pretest * treatment, data = DataBTU)
+print(summary(resultBTU))
+
+
+##GTU DATA PERFORMANCE---------------------------------------------------------
+
+DataGTU <- subset(PerData, university == "GTU")
+describeBy(DataGTU$diff, DataGTU$treatment)
+summary(DataGTU)
+
+prebox <- ggplot(DataGTU, aes(x = treatment, y = pretest, fill = treatment)) + geom_boxplot() + scale_x_discrete() + xlab("Treatment Group") + ylab("Scores Pre Test") + stat_summary(fun.y = mean, geom = "point", shape = 5, size = 4)
+postbox <- ggplot(DataGTU, aes(x = treatment, y = postest, fill = treatment)) + geom_boxplot() + scale_x_discrete() + xlab("Treatment Group") + ylab("Scores Post Test")+ stat_summary(fun.y = mean, geom = "point", shape = 5, size = 4)
+meanbox <- ggplot(DataGTU, aes(x = treatment, y = diff, fill = treatment)) + geom_boxplot() + scale_x_discrete() + xlab("Treatment Group") + ylab("Scores diff") + stat_summary(fun.y = mean, geom="point",shape=5, size=4)
+grid.arrange(prebox, postbox, meanbox, ncol = 3)
+
+#F-test GTU
+var.test(pretest ~ treatment, DataGTU) #as variancias nao sao iguais
+
+## t-test means of diff
+t.test(diff ~ treatment, var.equal = FALSE, paired = FALSE, DataGTU) #as medias nao sao diferentes
+
+##Linear models
+ggplot(DataGTU, aes(x = pretest, y = postest, shape = treatment, color = treatment)) + geom_point() + geom_smooth(method = lm, se=FALSE, fullrange = TRUE)
+
+model1GTU <- lm(postest ~ pretest + treatment, DataGTU)
+anova(model1GTU)
+model2GTU <- lm(postest ~ pretest * factor(treatment), DataGTU)
+anova(model2GTU)
+
+resultGTU <- aov(postest ~ pretest * treatment, data = DataGTU)
+print(summary(resultGTU))
 
 ## OMSU DATA PERFORMANCE ----------------------------------------------------------------------------------------
 DataOMSU <- subset(PerData, university == "OMSU")
@@ -200,6 +279,11 @@ t.test(diff ~ treatment, var.equal = TRUE, paired = FALSE, DataKAI) ## as medias
 
 ##plot the linear models
 ggplot(DataKAI, aes(x = pretest, y = postest, shape = treatment, color = treatment)) + geom_point() + geom_smooth(method = lm, se=FALSE, fullrange = TRUE)
+
+fitpre <- lm(pretest ~ treatment, data = DataKAI)
+fitpos <- lm(postest ~ treatment, data = DataKAI)
+
+
 
 summary(aov(postest ~ pretest * treatment, data = DataKAI))
 
@@ -314,5 +398,125 @@ for(col in 8:34){
   DataGTU[,col] <- factor(DataGTU[,col], levels = 1:6, labels = La, ordered = TRUE )
 }
 
+Questions <- DataMetaMath[,1:27]
+Questions.PCA <- prcomp(Questions, center = TRUE, scale = TRUE)
+plot(Questions.PCA)
+
+library(ggbiplot)
+
+Questionspemo <- DataRupemo[,1:27]
+Questionspemo.PCA <- prcomp(Questionspemo, center = TRUE, scale = TRUE)
+
+gpemo <- ggbiplot(Questionspemo.PCA, obs.scale = 1, var.scale = 1,
+                  groups = DataRupemo$univ, ellipse = TRUE)
+gpemo <- gpemo + scale_color_discrete(name = '')
+gpemo <- gpemo + theme(legend.direction = 'horizontal',
+                       legend.position = 'top')
+print(gpemo)
+
+gpomo <- ggbiplot(Questions.PCA, obs.scale = 1, var.scale = 1,
+              groups = DataMetaMath$university, ellipse = TRUE)
+gpomo <- gpomo + scale_color_discrete(name = '')
+gpomo <- gpomo + theme(legend.direction = 'horizontal',
+               legend.position = 'top')
+print(gpomo)
+
+Questionspold <- DataRupold[,1:27]
+Questionspold.PCA <- prcomp(Questionspold, center = TRUE, scale = TRUE)
+
+gpold <- ggbiplot(Questionspold.PCA, obs.scale = 1, var.scale = 1,
+                  groups = DataRupold$univ, ellipse = TRUE)
+gpold <- gpold + scale_color_discrete(name = '')
+gpold <- gpold + theme(legend.direction = 'horizontal',
+                       legend.position = 'top')
+print(gpold)
 
 
+QuestionsPeold <- DataRupre[,1:27]
+QuestionsPeold.PCA <- prcomp(QuestionsPeold, center = TRUE, scale = TRUE)
+plot(QuestionsPeold.PCA)
+
+gpeold <- ggbiplot(QuestionsPeold.PCA, obs.scale = 1, var.scale = 1,
+              groups = DataRupre$univ, ellipse = TRUE)
+gpeold <- gpeold + scale_color_discrete(name = '')
+gpeold <- gpeold + theme(legend.direction = 'horizontal',
+               legend.position = 'top')
+print(gpeold)
+
+QGeoPemo <- GeoPemo[, 1:27]
+QGeoPemo.PCA <- prcomp(QGeoPemo, center = TRUE, scale = TRUE)
+plot(QGeoPemo.PCA)
+
+geopemo <- ggbiplot(QGeoPemo.PCA, obs.scale = 1, var.scale = 1, groups = GeoPemo$univ, ellipse = TRUE)
+geopemo <- geopemo + scale_color_discrete(name = '')
+geopemo <- geopemo + theme(legend.direction = 'horizontal',
+                           legend.position = 'top')
+print(geopemo)
+
+
+QGeoPomo <- GeoPomo[, 1:27]
+QGeoPomo.PCA <- prcomp(QGeoPomo, center = TRUE, scale = TRUE)
+plot(QGeoPomo.PCA)
+
+geopomo <- ggbiplot(QGeoPomo.PCA, obs.scale = 1, var.scale = 1, groups = GeoPomo$univ, ellipse = TRUE)
+geopomo <- geopomo + scale_color_discrete(name = '')
+geopomo <- geopomo + theme(legend.direction = 'horizontal',
+                           legend.position = 'top')
+print(geopomo)
+
+QGeArPoold <- GeArpoold[, 1:27]
+QGeArPoold.PCA <- prcomp(QGeArPoold, center = TRUE, scale = TRUE)
+
+geoarpoold <- ggbiplot(QGeArPoold.PCA, obs.scale = 1, var.scale = 1,
+                       groups = GeArpoold$univ, ellipse = TRUE) + scale_color_discrete(name = '') + theme(legend.direction = 'horizontal',
+                                                                                                         legend.position = 'top')
+print(geoarpoold)
+
+QGeArPemo <- GeArPemo[,1:27]
+QGeArPemo.PCA <- prcomp(QGeArPemo, center = TRUE, scale = TRUE)
+
+geoarpemo <- ggbiplot(QGeArPemo.PCA, obs.scale = 1, var.scale = 1,
+                       groups = GeArPemo$univ, ellipse = TRUE) + scale_color_discrete(name = '') + theme(legend.direction = 'horizontal',
+                                                                                                          legend.position = 'top')
+print(geoarpemo)
+
+QGeArPomo <- GeArPomo[,1:27]
+QGeArPomo.PCA <- prcomp(QGeArPomo, center = TRUE, scale = TRUE)
+geoarpomo <- ggbiplot(QGeArPomo.PCA, obs.scale = 1, var.scale = 1,
+                      groups = GeArPomo$univ, ellipse = TRUE) + scale_color_discrete(name = '') + theme(legend.direction = 'horizontal',
+                                                                                                        legend.position = 'top')
+print(geoarpomo)
+
+QGeoPoold <- GeoPoold[, 1:27]
+QGeoPoold.PCA <- prcomp(QGeoPoold, center = TRUE, scale = TRUE)
+plot(QGeoPoold.PCA)
+
+geopoold <- ggbiplot(QGeoPoold.PCA, obs.scale = 1, var.scale = 1,
+                     groups = GeoPoold$univ, ellipse = TRUE)
+geopoold <- geopoold + scale_color_discrete(name = '')
+geopoold <- geopoold + theme(legend.direction = 'horizontal',
+                             legend.position = 'top')
+print(geopoold)
+
+QGeArPeold <- GeArPeold[,1:27]
+QGeArPeold.PCA <- prcomp(QGeArPeold, center = TRUE, scale = TRUE)
+plot(QGeArPeold.PCA)
+
+gearpeold <- ggbiplot(QGeArPeold.PCA, obs.scale = 1, var.scale = 1,
+                     groups = GeArPeold$univ, ellipse = TRUE)
+gearpeold <- gearpeold + scale_color_discrete(name = '')
+gearpeold <- gearpeold + theme(legend.direction = 'horizontal',
+                             legend.position = 'top')
+print(gearpeold)
+
+
+QGeoPeold <- GeoPeold[,1:27]
+QGeoPeold.PCA <- prcomp(QGeoPeold, center = TRUE, scale = TRUE)
+plot(QGeoPeold.PCA)
+
+geopeold <- ggbiplot(QGeoPeold.PCA, obs.scale = 1, var.scale = 1,
+                   groups = GeoPeold$univ, ellipse = TRUE)
+geopeold <- geopeold + scale_color_discrete(name = '')
+geopeold <- geopeold + theme(legend.direction = 'horizontal',
+                         legend.position = 'top')
+print(geopeold)
