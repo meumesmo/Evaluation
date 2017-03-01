@@ -1,0 +1,43 @@
+---
+title: "MetaMath and MathGeAr Results"
+author: "Pedro Lealdino Filho"
+date: "2/12/2017"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+load(file = "DataOMSU.RData")
+```
+
+## Content
+
+The evaluation of the courses in MetaMath and MathGeAr projects focused in assessing the performance of the students from the participant universities.
+
+## Participant Students
+
+Aproximately 2000 students completed the assessment during the years of the projects. 
+
+## The Assessment
+
+Each university developed their own performance test for each course. 
+
+## MetaMath Universities
+
+### OMSU
+
+```{r cars}
+summary(DataOMSU)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
