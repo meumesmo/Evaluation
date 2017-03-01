@@ -1,7 +1,7 @@
+setwd("~/GitHub/Evaluation/CleanData")
 
 ##Install packages
 install.packages("devtools")
-
 ##Likert Packages
 install_github('likert','jbryer')
 
@@ -23,30 +23,51 @@ library(psych)
 library(gridExtra)
 library(readxl)
 
+##CLEANING DATA
+
 #ASPU Data - Mathematics Perception
 
 ASPUpeold <- read.xlsx("EvaluationDataASPU_Armenia.xlsx", sheetName = "PreQOld")
+ASPUpeold[,35:42] <- NULL
 ASPUpeold$univ <- as.factor("ASPU")
 ASPUpoold <- read.xlsx("EvaluationDataASPU_Armenia.xlsx", sheetName = "PostQOld")
+ASPUpoold[,35:42] <- NULL
 ASPUpoold$univ <- as.factor("ASPU")
 ASPUpemo <- read.xlsx("EvaluationDataASPU_Armenia.xlsx", sheetName = "PreQModern")
+ASPUpemo[,35:42] <- NULL
 ASPUpemo$univ <- as.factor("ASPU")
 ASPUpomo <- read.xlsx("EvaluationDataASPU_Armenia.xlsx", sheetName = "PostQModern")
+ASPUpomo[,35:42] <- NULL
 ASPUpomo$univ <- as.factor("ASPU")
 
 #ATSU Data - Mathematics Perception
 
 ATSUpemo <- read.xlsx("EvaluationATSU_pre.xlsx", sheetName = "Sheet1")
+ATSUpemo[,35:42] <- NULL
+ATSUpemo$univ <- as.factor("ATSU")
 ATSUpomo <- read.xlsx("EvaluationATSU_pos.xlsx", sheetName = "Sheet1")
+ATSUpomo[,35:42] <- NULL
+ATSUpomo$univ <- as.factor("ATSU")
 
 #BSU Data - Mathematics Perception
 BSUpeold <- read.xlsx("EvaluationBSUPreOld.xlsx", sheetName = "Sheet1")
+BSUpeold[,35:42] <- NULL
+BSUpeold$univ <- as.factor("BSU")
 BSUpoold <- read.xlsx("EvaluationBSUPosOld.xlsx", sheetName = "Sheet1")
+BSUpoold[,35:42] <- NULL
+BSUpoold$univ <- as.factor("BSU")
 BSUpemo <- read.xlsx("EvaluationBSUPreNew.xlsx", sheetName = "Sheet1")
+BSUpemo[,35:42] <- NULL
+BSUpemo$univ <- as.factor("BSU")
 BSUpomo <- read.xlsx("EvaluationBSUPosNew.xlsx", sheetName = "Sheet1")
+BSUpomo[,35:42] <- NULL
+BSUpomo$univ <- as.factor("BSU")
 
 #GTU Data - Mathematics Perception
+#Esses dados eu não to ligado pq nao tem informacao de quando eles foram realizados.
 GTUpomo <- read.xlsx("EvaluationGTU.xlsx", sheetName = "Sheet1")
+GTUpomo[,35:42] <- NULL
+GTUpomo$univ <- as.factor("GTU")
 
 #UG Data - Matehamtics Percepetion
 UGpeold <- read.xlsx("EvaluationUG.xlsx", sheetName = "PreQOld")
