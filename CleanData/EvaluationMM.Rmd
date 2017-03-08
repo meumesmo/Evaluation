@@ -1,5 +1,5 @@
 ---
-title: "MetaMath and MathGeAr Results"
+title: " Evaluation Report - MetaMath"
 author: "Pedro Lealdino Filho"
 date: "2/12/2017"
 output: word_document
@@ -12,21 +12,16 @@ knitr::opts_chunk$set(echo = TRUE)
 load(file = "DataOMSU.RData")
 ```
 
-## Content
+#Contents
 
-The evaluation of the courses in MetaMath and MathGeAr projects focused in assessing the performance of the students from the participant universities.
+#The project MetaMath
 
-## Participant Students
+In March 2014, the MetaMath project started wiht the objective to improve the quality of STEM education in Russia by modernizing and improving the curricula in the field of Mathematics. The process of modernization started from the fundamental revision of the way math studies are organized in all Russian universities offering degrees in STEM. After ensuring the consistency of the math curricula with the Bologna principles and best European standards, the further steps were token to modernize the content and teaching methods by introducing principles of blended learning and new educational techonologies.
 
-Aproximately 2000 students completed the assessment during the years of the projects. 
+This report describes the results from the three years project, its methodologies and the quantitative analysis of the modernized courses of Russian universities. 
 
-## The Assessment
 
-Each university developed their own performance test for each course. 
 
-## MetaMath Universities
-
-### OMSU
 
 ```{r cars}
 summary(DataOMSU)
