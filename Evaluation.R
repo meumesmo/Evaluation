@@ -71,24 +71,46 @@ GTUpomo$univ <- as.factor("GTU")
 
 #UG Data - Matehamtics Percepetion
 UGpeold <- read.xlsx("EvaluationUG.xlsx", sheetName = "PreQOld")
+UGpeold[,35:42] <- NULL
+UGpeold$univ <- as.factor("UG")
 UGpoold <- read.xlsx("EvaluationUG.xlsx", sheetName = "PosQOld")
+UGpoold[,35:42] <- NULL
+UGpoold$univ<- as.factor("UG")
 UGpemo <- read.xlsx("EvaluationUG.xlsx", sheetName = "PreQModern")
+UGpemo[,35:42] <- NULL
+UGpemo$univ <- as.factor("UG")
 UGpomo <- read.xlsx("EvaluationUG.xlsx", sheetName = "PosQModern")
-
-
+UGpomo[,35:42] <- NULL
+UGpomo$univ <- as.factor("UG")
 
 
 #KAI Data - Mathematics Perception 
 
 KAIpeoldfirst <- read_excel("EvaluationKAIProb.xlsx", sheet = 1)
+KAIpeoldfirst[,35:42] <- NULL
+KAIpeoldfirst$univ <- as.factor("KAI")
 KAIpooldfirst <- read_excel("EvaluationKAIProb.xlsx", sheet = 2)
+KAIpooldfirst[,35:42] <- NULL
+KAIpooldfirst$univ <- as.factor("KAI")
 KAIpemofirst <- read_excel("EvaluationKAIProb.xlsx", sheet = 4)
+KAIpemofirst[,35:42] <- NULL
+KAIpemofirst$univ <- as.factor("KAI")
 KAIpomofirst <- read_excel("EvaluationKAIProb.xlsx", sheet = 5)
+KAIpomofirst[,35:42] <- NULL
+KAIpomofirst$univ <- as.factor("KAI")
 
 KAIpeoldsec <- read.xlsx("EvaluationKAIOp.xlsx", sheetName = "PreQOld")
+KAIpeoldsec[,35:42] <- NULL
+KAIpeoldsec$univ <- as.factor("KAI")
 KAIpooldsec <- read.xlsx("EvaluationKAIOp.xlsx", sheetName = "PostQOld")
+KAIpooldsec[,35:42] <- NULL
+KAIpooldsec$univ <- as.factor("KAI")
 KAIpemosec <- read.xlsx("EvaluationKAIOp.xlsx", sheetName = "PreQModern")
+KAIpemosec[,35:42] <- NULL
+KAIpemosec$univ <- as.factor("KAI")
 KAIpomosec <- read.xlsx("EvaluationKAIOp.xlsx", sheetName = "PostQModern")
+KAIpomosec[,35:42] <- NULL
+KAIpomosec$univ <- as.factor("KAI")
 
 #NPUA Data - Mathematics Perception
 NPUApeoldfirst <- read.xlsx("EvaluationNPUAone.xlsx", sheetName = "PreQOld")
@@ -119,32 +141,72 @@ NPUApomosec$univ <- as.factor("NPUA")
 
 #OMSU DATA - Mathematics Perception
 OMSUpeold <- read.xlsx("Evaluation Data OMSU.xlsx", sheetName = "PreQOld")
+OMSUpeold[,35:42] <- NULL
+OMSUpeold$univ <- as.factor("OMSU")
 OMSUpoold <- read.xlsx("Evaluation Data OMSU.xlsx", sheetName = "PostQOld")
+OMSUpoold[,35:42] <- NULL
+OMSUpoold$univ <- as.factor("OMSU")
 OMSUpemo <- read.xlsx("Evaluation Data OMSU.xlsx", sheetName = "PreQModern")
+OMSUpemo[,35:42] <- NULL
+OMSUpemo$univ <- as.factor("OMSU")
 OMSUpomo <- read.xlsx("Evaluation Data OMSU.xlsx", sheetName = "PostQModern")
+OMSUpomo[,35:42] <- NULL
+OMSUpomo$univ <- as.factor("OMSU")
 
 #TVER DATA - Mathematics Perception
 TVERpeoldfirst <- read.xlsx("EvaluationTVERone.xlsx", sheetName = "PreQOld")
+TVERpeoldfirst[,35:42] <- NULL
+TVERpeoldfirst$univ <- as.factor("TVER")
 TVERpooldfirst <- read.xlsx("EvaluationTVERone.xlsx", sheetName = "PostQOld")
+TVERpooldfirst[,35:42] <- NULL
+TVERpooldfirst$univ <- as.factor("TVER")
 TVERpemofirst <- read.xlsx("EvaluationTVERone.xlsx", sheetName = "PreQModern")
+TVERpemofirst[,35:42] <- NULL
+TVERpemofirst$univ <- as.factor("TVER")
 TVERpomofirst <- read.xlsx("EvaluationTVERone.xlsx", sheetName = "PostQModern")
+TVERpomofirst[,35:42] <- NULL
+TVERpomofirst$univ <- as.factor("TVER")
 
 TVERpeoldsec <- read.xlsx("EvaluationTVERtwo.xlsx", sheetName = "PreQOld")
+TVERpeoldsec[,35:42] <- NULL
+TVERpeoldsec$univ <- as.factor("TVER")
 TVERpooldsec <- read.xlsx("EvaluationTVERtwo.xlsx", sheetName = "PostQOld")
+TVERpooldsec[,35:42] <- NULL
+TVERpooldsec$univ <- as.factor("TVER")
 TVERpemosec <- read.xlsx("EvaluationTVERtwo.xlsx", sheetName = "PreQModern")
+TVERpemosec[,35:42] <- NULL
+TVERpemosec$univ <- as.factor("TVER")
 TVERpomosec <- read.xlsx("EvaluationTVERtwo.xlsx", sheetName = "PostQModern")
+TVERpomosec[,35:42] <- NULL
+TVERpomosec$univ <- as.factor("TVER")
 
 #LETI DATA - Mathematics Perception
 LETIpeold <- read.xlsx("EvaluationLETI.xlsx", sheetName = "PreQOld")
+LETIpeold[,35:42] <- NULL
+LETIpeold$univ <- as.factor("LETI")
 LETIpoold <- read.xlsx("EvaluationLETI.xlsx", sheetName = "PostQOld")
+LETIpoold[,35:42] <- NULL
+LETIpoold$univ <- as.factor("LETI")
 LETIpemo <- read.xlsx("EvaluationLETI.xlsx", sheetName = "PreQModern")
+LETIpemo[,35:42] <- NULL
+LETIpemo$univ <- as.factor("LETI")
 LETIpomo <- read.xlsx("EvaluationLETI.xlsx", sheetName = "PostQModern")
+LETIpomo[,35:42] <- NULL
+LETIpomo$univ <- as.factor("LETI")
 
 #NNSU Data - Mathematics Perception
 NNSUpeold <- read.xlsx("EvaluationNNSU.xlsx", sheetName = "PreQOld")
+NNSUpeold[,35:42] <- NULL
+NNSUpeold$univ <- as.factor("NNSU")
 NNSUpoold <- read.xlsx("EvaluationNNSU.xlsx", sheetName = "PostQOld")
+NNSUpoold[,35:42] <- NULL
+NNSUpoold$univ <- as.factor("NNSU")
 NNSUpemo <- read.xlsx("EvaluationNNSU.xlsx", sheetName = "PreQModern")
+NNSUpemo[,35:42] <- NULL
+NNSUpemo$univ <- as.factor("NNSU")
 NNSUpomo <- read.xlsx("EvaluationNNSU.xlsx", sheetName = "PostQModern")
+NNSUpomo[,35:42] <- NULL
+NNSUpomo$univ <- as.factor("NNSU")
 
 
 #----------xx-------------xxx---------------------------xxx------------xx-----------xxx------
