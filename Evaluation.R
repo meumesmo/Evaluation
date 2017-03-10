@@ -3,8 +3,6 @@ setwd("~/GitHub/Evaluation/CleanData")
 ##Install packages
 install.packages("devtools")
 ##Likert Packages
-install_github('likert','jbryer')
-
 
 ##Don't forget to call likert::likert in order to use the likert package correctly
 ##Verify Scale value
@@ -23,6 +21,10 @@ library(psych)
 library(gridExtra)
 library(readxl)
 library(plyr)
+library(devtools)
+
+
+install_github('likert','jbryer', force = TRUE)
 
 ##CLEANING DATA
 
@@ -278,7 +280,6 @@ RussianData$`university year` <- NULL
 RussianDemo <- RussianData[,1:6]
 RussianDemo$test <- RussianData$test
 RussianDemo$univ <- RussianData$univ
-
 
 View(RussianData)
 
