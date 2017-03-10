@@ -1,0 +1,47 @@
+---
+title: "Perception of Mathematics - KAI"
+output: pdf_document
+---
+```{r echo = FALSE}
+library(ggfortify)
+
+load(file = "KAIpeoldfirst.RData")
+load(file = "KAIpemofirst.RData")
+load(file = "KAIpooldfirst.RData")
+load(file = "KAIpomofirst.RData")
+```
+
+#KAI Perception of Mathematics
+
+Dear Svetlana, I need your help to understand the data from your course in order to finish the analysis for the evaluation report of the project. So, we have four sources of data on the perception of mathematics coded as follow:
+
+* peold = Pre test traditional course
+* poold = Post test traditional course
+* pemo = Pre test modernized course
+* pomo = Post test modernized course
+
+The survey contains 27 questions in a likert scale from 1 to 6, I'll summary here only the first two questions, coded as follow:
+
+* N1: I think solving math problems is quite boring
+* N2: Solving math problems is fun
+
+So, both questions have more or less the same meaning. It means that the average of answers should be aproximately the same. But it's not what we see:
+
+```{r}
+## Peold
+summary(KAIpeoldfirst[,8:9])
+
+## Poold
+summary(KAIpooldfirst[,8:9])
+
+## Pemo
+summary(KAIpemofirst[,8:9])
+
+## Pomo
+summary(KAIpomofirst[,8:9])
+```
+```{r}
+qplot(KAIpeoldfirst[,8:9], aes(x = KAIpeoldfirst[,8:9]))
+
+```
+

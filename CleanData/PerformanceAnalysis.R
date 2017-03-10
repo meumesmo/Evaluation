@@ -5,6 +5,7 @@ install.packages("psych")
 library(psych)
 library(ggplot2)
 library(gridExtra)
+library(xlsx)
 
 
 PerData <- read.xlsx("PerformanceTest.xlsx", sheetName = "Sheet1")
@@ -36,6 +37,5 @@ ggplot(UnivData, aes(x = pretest, y = postest, shape = treatment, color = treatm
 
 #ancova model
 resultUniv <- aov(postest ~ pretest * treatment, data = UnivData)
-print(summary(resultUniv))
-
+summary(resultUniv)
 

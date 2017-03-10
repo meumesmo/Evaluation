@@ -26,9 +26,9 @@ Rupomo <- na.omit(Rupomo)
 Rupeoldfa <- Rupeold
 for(col in 1:27){Rupeoldfa[,col] <- factor(Rupeoldfa[,col], levels = 1:6, ordered = TRUE)}
 
-Rupeold1 <- likert::likert(as.data.frame(Rupeoldfa[,1:3]), grouping = Rupeold$univ)
-plot(Rupeold1, ordered = FALSE)
-plot(Rupeold1, type = 'density', ordered = FALSE)
+Rupeold1 <- likert::likert(as.data.frame(Rupeoldfa$N1), grouping = Rupeoldfa$univ)
+plot(Rupeold1, ordered = FALSE, type = 'density')
+
 
 Rupooldfa <- Rupoold
 for(col in 1:27){Rupooldfa[,col] <- factor(Rupooldfa[,col], levels = 1:6, ordered = TRUE)}
