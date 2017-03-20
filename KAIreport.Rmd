@@ -41,7 +41,6 @@ summary(KAIpemofirst[,8:9])
 summary(KAIpomofirst[,8:9])
 ```
 ```{r}
-qplot(KAIpeoldfirst[,8:9], aes(x = KAIpeoldfirst[,8:9]))
-
+plot()
 ```
 
